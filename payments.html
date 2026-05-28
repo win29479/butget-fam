@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Management</title>
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body class="payments-page">
+  <main class="page-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Payment Management</p>
+        <h1>จัดการเงินตามหมวด</h1>
+        <p class="muted">คลิก Need / Want / Savings เพื่อเข้าไปจัดการการ์ดค่าใช้จ่ายและ task ภายในหมวดนั้น</p>
+      </div>
+      <a class="secondary-btn" href="index.html">กลับหน้า Dashboard</a>
+    </section>
+
+    <section class="card panel">
+      <div class="top-stats">
+        <div>
+          <span class="muted">รายได้ต่อเดือน</span>
+          <strong id="topIncome">฿0</strong>
+        </div>
+        <div>
+          <span class="muted">Budget คงเหลือรวม</span>
+          <strong id="totalRemaining">฿0</strong>
+        </div>
+      </div>
+      <div id="bucketTabs" class="bucket-tabs"></div>
+    </section>
+
+    <section id="bucketView" class="card panel hidden">
+      <div class="bucket-header">
+        <div>
+          <h2 id="bucketTitle">Need</h2>
+          <p id="bucketSubtitle" class="muted">งบของหมวดนี้</p>
+        </div>
+        <div class="bucket-balance">
+          <span>Budget</span>
+          <strong id="bucketBudget">฿0</strong>
+          <small id="bucketRemaining">เหลือ ฿0</small>
+        </div>
+      </div>
+
+      <div class="progress-track">
+        <div id="bucketProgress" class="progress-fill"></div>
+      </div>
+
+      <div class="actions row">
+        <button id="addCategoryBtn" class="primary-btn">+ เพิ่ม card</button>
+      </div>
+
+      <div id="emptyState" class="empty-state hidden" style="margin-top:20px;">
+        ยังไม่มี card ในหมวดนี้
+      </div>
+
+      <div id="categoriesContainer" class="category-grid" style="margin-top:20px;"></div>
+    </section>
+  </main>
+
+  <dialog id="categoryDialog" class="dialog">
+    <form id="categoryForm" method="dialog" class="dialog-card" autocomplete="off">
+      <h3>เพิ่ม card ใหม่</h3>
+      <label>
+        <span>ชื่อ card</span>
+        <input id="categoryNameInput" type="text" maxlength="40" placeholder="เช่น ค่าอาหาร" required autocomplete="off" />
+      </label>
+      <div class="dialog-actions">
+        <button value="cancel" class="ghost-btn" type="button" id="cancelCategoryBtn">ยกเลิก</button>
+        <button value="confirm" class="primary-btn" type="submit">สร้าง card</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="taskDialog" class="dialog">
+    <form id="taskForm" method="dialog" class="dialog-card" autocomplete="off">
+      <h3>เพิ่ม task</h3>
+      <label>
+        <span>ค่าใช้จ่ายอะไร</span>
+        <input id="taskTitleInput" type="text" maxlength="60" placeholder="เช่น ข้าวกลางวัน" required autocomplete="off" />
+      </label>
+      <label>
+        <span>ยอด</span>
+        <input id="taskAmountInput" type="number" min="1" step="1" placeholder="เช่น 120" required autocomplete="off" />
+      </label>
+      <p id="taskHint" class="muted small"></p>
+      <div class="dialog-actions">
+        <button value="cancel" class="ghost-btn" type="button" id="cancelTaskBtn">ยกเลิก</button>
+        <button value="confirm" class="primary-btn" type="submit">เพิ่ม task</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="confettiRoot"></div>
+
+  <script type="module" src="./payments.js"></script>
+</body>
+</html>
